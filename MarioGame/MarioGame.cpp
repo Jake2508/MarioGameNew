@@ -1,5 +1,4 @@
 // MarioGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
-
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -18,7 +17,7 @@ SDL_Texture* g_texture = nullptr;
 bool InitSDL();
 void CloseSDL();
 bool Update();
-// tutorial 4 -- drawing images prototypes
+// Draw images prototypes
 void Render();
 SDL_Texture* LoadTextureFromFile(string path);
 void FreeTexture();
@@ -38,11 +37,9 @@ int main(int argc, char* args[])
 			Render();
 			quit = Update();
 		}
-
 	}
 
 	CloseSDL();
-
 	return 0;
 }
 
@@ -73,7 +70,7 @@ bool InitSDL()
 			return false;
 		}
 		
-		// tutorial 4 -- Setups the image renderer and has a check to make sure its intilised correctly
+		// Setups the image renderer and has a check to make sure its intilised correctly
 		g_renderer = SDL_CreateRenderer(g_window, -1, SDL_RENDERER_ACCELERATED);
 		if (g_renderer != nullptr)
 		{
@@ -91,7 +88,7 @@ bool InitSDL()
 			return false;
 		}
 
-		//Load the background texture
+		// Load the background texture
 		g_texture = LoadTextureFromFile("Images/test.bmp");
 		if (g_texture == nullptr)
 		{
@@ -114,10 +111,10 @@ void CloseSDL()
 
 	//clear the texture
 	FreeTexture();
+	
 	//release the renderer
 	SDL_DestroyRenderer(g_renderer);
 	g_renderer = nullptr;
-
 }
 
 bool Update()
@@ -138,7 +135,6 @@ bool Update()
 	}
 
 	return false;
-
 }
 
 void Render()
@@ -155,14 +151,12 @@ void Render()
 
 	//update the screen
 	SDL_RenderPresent(g_renderer);
-
 }
 
 SDL_Texture* LoadTextureFromFile(string path)
 {
 	//remove memory used for a previous texture
 	FreeTexture();
-
 	SDL_Texture* p_texture = nullptr;
 
 	//Load the image
@@ -185,7 +179,6 @@ SDL_Texture* LoadTextureFromFile(string path)
 
 	//Return the texture
 	return p_texture;
-
 }
 
 void FreeTexture()
@@ -196,5 +189,4 @@ void FreeTexture()
 		SDL_DestroyTexture(g_texture);
 		g_texture = nullptr;
 	}
-
 }
